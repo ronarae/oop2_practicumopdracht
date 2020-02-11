@@ -1,6 +1,6 @@
 package practicumopdracht.models;
 
 public class Groep {
-    private String naam;
+    private String groepNaam;
     private int aantal;
 }
