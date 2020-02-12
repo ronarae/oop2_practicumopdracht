@@ -14,7 +14,7 @@ public class MainApplication extends Application {
 
         Scene mainScene = new Scene(
                 contactView.getView(),
-                400,
+                600,
                 500
         );
 

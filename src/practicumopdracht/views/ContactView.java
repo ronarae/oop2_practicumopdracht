@@ -2,11 +2,9 @@ package practicumopdracht.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import practicumopdracht.models.Contact;
 
 
@@ -25,7 +23,6 @@ public class ContactView {
 
     public ContactView() {
         initLayout();
-       // initContact();
     }
 
     public void initLayout() {
@@ -37,6 +34,7 @@ public class ContactView {
         Label postcodeLabel = new Label("Postcode:");
         Label woonplaatsLabel = new Label("Woonplaats:");
         Label telefoonnummerLabel = new Label("Telefoonnummer:");
+        Label contactLijstLabel = new Label("Contact Lijst:");
 
         naamInvoerVeld = new TextField();
         geboortedatumVeld = new DatePicker();
@@ -71,6 +69,19 @@ public class ContactView {
         view.add(telefoonnummerLabel,0,7);
         view.add(telefoonnummerInvoerVeld,1,7);
 
+        Button btOpslaan = new Button("Opslaan");
+        btOpslaan.setMaxWidth(Double.MAX_VALUE);
+
+        VBox vbButtons = new VBox();
+        vbButtons.setSpacing(10);
+        vbButtons.setPadding(new Insets(0,30,10,30));
+
+        view.add(btOpslaan,0,9);
+
+
+
+       view.add(contactLijstLabel, 0,10);
+        view.add(contactLijst,0,11);
     }
 
     public GridPane getView(){
