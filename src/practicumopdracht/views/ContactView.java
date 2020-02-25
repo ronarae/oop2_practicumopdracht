@@ -1,9 +1,12 @@
 package practicumopdracht.views;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import practicumopdracht.models.Contact;
 
@@ -24,6 +27,17 @@ public class ContactView {
     private GridPane view;
 
     public ContactView() {
+        this.naamInvoerVeld = new TextField();
+        this.geboortedatumVeld = new DatePicker();
+        this.emailInvoerVeld = new TextField();
+        this.straatInvoerVeld = new TextField();
+        this.huisnummerInvoerVeld = new TextField();
+        this.postcodeInvoerVeld = new TextField();
+        this.woonplaatsInvoerVeld = new TextField();
+        this.telefoonnummerInvoerVeld = new TextField();
+        this.ratingVeld = new TextField();
+        this.emergencyContactenVeld = new CheckBox();
+        this.contactLijst = new ListView<>();
         initLayout();
     }
 
@@ -37,7 +51,7 @@ public class ContactView {
         Label woonplaatsLabel = new Label("Woonplaats:");
         Label telefoonnummerLabel = new Label("Telefoonnummer:");
         Label ratingLabel = new Label("Rating");
-        Label emergencyContactenLabel = new Label("Emergency Contact");
+        Label emergencyContactenLabel = new Label("Als emergency contact?");
         Label contactLijstLabel = new Label("Contact Lijst:");
 
         naamInvoerVeld = new TextField();
@@ -53,8 +67,8 @@ public class ContactView {
         contactLijst = new ListView<>();
 
         view = new GridPane();
-        view.setHgap(5);
-        view.setVgap(5);
+        view.setHgap(10);
+        view.setVgap(10);
         view.setPadding(new Insets(10, 10, 10, 10));
         view.setAlignment(Pos.TOP_CENTER);
 
@@ -78,24 +92,22 @@ public class ContactView {
         view.add(ratingVeld,1,8);
         view.add(emergencyContactenLabel, 0,9 );
         view.add(emergencyContactenVeld, 1, 9);
-
+//
+//        HBox hbButtons = new HBox();
+//        hbButtons.setSpacing(5);
+//        hbButtons.setPadding(new Insets(0,20,10,30));
 
         Button btOpslaan = new Button("Opslaan");
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
 
-        VBox vbButtons = new VBox();
-        vbButtons.setSpacing(10);
-        vbButtons.setPadding(new Insets(0,30,10,30));
+        view.add(btOpslaan,0,10, 10,5);
+        view.setFillWidth(btOpslaan, true);
 
-        view.add(btOpslaan,0,10);
-
-
-
-       view.add(contactLijstLabel, 0,11);
-        view.add(contactLijst,0,12);
+        view.add(contactLijstLabel, 0,15);
+        view.add(contactLijst,0,16,10, 5);
     }
 
-    public GridPane getView(){
+    public Parent getRoot(){
         return view;
     }
 }
