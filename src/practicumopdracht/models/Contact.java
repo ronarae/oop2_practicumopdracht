@@ -12,6 +12,10 @@ public class Contact {
    private String postcode;
    private String woonplaats;
    private int telefoonnummer;
+   private double rating; //hoe vak bel ik de persoon
+   private boolean emergencyContacten;
+   private Groep hoortbij; // groep hoort bij contact
+
 
 
 

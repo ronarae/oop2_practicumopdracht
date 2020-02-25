@@ -17,6 +17,8 @@ public class ContactView {
     private TextField postcodeInvoerVeld;
     private TextField woonplaatsInvoerVeld;
     private TextField telefoonnummerInvoerVeld;
+    private TextField ratingVeld;
+    private CheckBox emergencyContactenVeld;
     private ListView<Contact> contactLijst;
 
     private GridPane view;
@@ -34,6 +36,8 @@ public class ContactView {
         Label postcodeLabel = new Label("Postcode:");
         Label woonplaatsLabel = new Label("Woonplaats:");
         Label telefoonnummerLabel = new Label("Telefoonnummer:");
+        Label ratingLabel = new Label("Rating");
+        Label emergencyContactenLabel = new Label("Emergency Contact");
         Label contactLijstLabel = new Label("Contact Lijst:");
 
         naamInvoerVeld = new TextField();
@@ -44,6 +48,8 @@ public class ContactView {
         postcodeInvoerVeld = new TextField();
         woonplaatsInvoerVeld = new TextField();
         telefoonnummerInvoerVeld = new TextField();
+        ratingVeld =  new TextField();
+        emergencyContactenVeld = new CheckBox();
         contactLijst = new ListView<>();
 
         view = new GridPane();
@@ -68,6 +74,11 @@ public class ContactView {
         view.add(woonplaatsInvoerVeld,1,6);
         view.add(telefoonnummerLabel,0,7);
         view.add(telefoonnummerInvoerVeld,1,7);
+        view.add(ratingLabel, 0, 8);
+        view.add(ratingVeld,1,8);
+        view.add(emergencyContactenLabel, 0,9 );
+        view.add(emergencyContactenVeld, 1, 9);
+
 
         Button btOpslaan = new Button("Opslaan");
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
@@ -76,12 +87,12 @@ public class ContactView {
         vbButtons.setSpacing(10);
         vbButtons.setPadding(new Insets(0,30,10,30));
 
-        view.add(btOpslaan,0,9);
+        view.add(btOpslaan,0,10);
 
 
 
-       view.add(contactLijstLabel, 0,10);
-        view.add(contactLijst,0,11);
+       view.add(contactLijstLabel, 0,11);
+        view.add(contactLijst,0,12);
     }
 
     public GridPane getView(){
