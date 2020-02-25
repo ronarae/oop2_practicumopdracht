@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -92,19 +93,36 @@ public class ContactView {
         view.add(ratingVeld,1,8);
         view.add(emergencyContactenLabel, 0,9 );
         view.add(emergencyContactenVeld, 1, 9);
-//
-//        HBox hbButtons = new HBox();
-//        hbButtons.setSpacing(5);
-//        hbButtons.setPadding(new Insets(0,20,10,30));
 
         Button btOpslaan = new Button("Opslaan");
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
 
-        view.add(btOpslaan,0,10, 10,5);
+        view.add(btOpslaan,0,10,3,1);
         view.setFillWidth(btOpslaan, true);
 
-        view.add(contactLijstLabel, 0,15);
-        view.add(contactLijst,0,16,10, 5);
+        view.add(contactLijstLabel, 0,11);
+        view.add(contactLijst,0,12,3,1);
+
+        Button btNieuw = new Button("Nieuw");
+        view.add(btNieuw,0,13);
+        Button btVerwijderen = new Button("Verwijderen");
+        view.add(btVerwijderen,1,13);
+        Button btTerug = new Button("Terug naar overzicht");
+        view.add(btTerug,2,13);
+
+
+//        private HBox getHBox() {
+//            HBox hbButtons = new HBox();
+//            hbButtons.setSpacing(5);
+//            hbButtons.setPadding(new Insets(0, 20, 10, 30));
+//
+//            hbButtons.getChildren().add(new Button("Nieuw"));
+//            hbButtons.getChildren().add(new Button("Verwijderen"));
+//            hbButtons.getChildren().add(new Button("Terug naar overzicht"));
+//
+//            return hbButtons;
+//
+//        }
     }
 
     public Parent getRoot(){
