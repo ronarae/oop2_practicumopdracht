@@ -76,7 +76,7 @@ public class ContactView extends View {
         view.setHgap(10);
         view.setVgap(10);
         view.setPadding(new Insets(10, 10, 10, 10));
-        view.setAlignment(Pos.TOP_CENTER);
+        view.setAlignment(Pos.TOP_RIGHT);
 
         view.add(naamLabel, 0, 0);
         view.add(naamInvoerVeld, 1,0);

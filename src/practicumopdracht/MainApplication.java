@@ -15,12 +15,12 @@ public class MainApplication extends Application {
         GroepView groepView = new GroepView();
 
         Scene mainScene = new Scene(
-//                contactView.getRoot(),
-//                500,
-//                600
-                groepView.getRoot(),
-                300,
-                200
+                contactView.getRoot(),
+                800,
+                600
+//                groepView.getRoot(),
+//                300,
+//                200
         );
 
         stage.setScene(mainScene);
