@@ -1,44 +1,49 @@
 package practicumopdracht.views;
 
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import practicumopdracht.models.Contact;
 
-
-public class ContactView {
+public class ContactView extends View {
     private TextField naamInvoerVeld;
     private DatePicker geboortedatumVeld;
     private TextField emailInvoerVeld;
     private TextField straatInvoerVeld;
     private TextField huisnummerInvoerVeld;
     private TextField postcodeInvoerVeld;
-    private TextField woonplaatsInvoerVeld;
+    private TextArea woonplaatsInvoerVeld;
     private TextField telefoonnummerInvoerVeld;
     private TextField ratingVeld;
     private CheckBox emergencyContactenVeld;
     private ListView<Contact> contactLijst;
+    private Button btOpslaan;
+    private Button btNieuw;
+    private Button btVerwijderen;
+    private Button btTerug;
 
     private GridPane view;
 
     public ContactView() {
-        this.naamInvoerVeld = new TextField();
-        this.geboortedatumVeld = new DatePicker();
-        this.emailInvoerVeld = new TextField();
-        this.straatInvoerVeld = new TextField();
-        this.huisnummerInvoerVeld = new TextField();
-        this.postcodeInvoerVeld = new TextField();
-        this.woonplaatsInvoerVeld = new TextField();
-        this.telefoonnummerInvoerVeld = new TextField();
-        this.ratingVeld = new TextField();
-        this.emergencyContactenVeld = new CheckBox();
-        this.contactLijst = new ListView<>();
+        naamInvoerVeld = new TextField();
+        geboortedatumVeld = new DatePicker();
+        emailInvoerVeld = new TextField();
+        straatInvoerVeld = new TextField();
+        huisnummerInvoerVeld = new TextField();
+        postcodeInvoerVeld = new TextField();
+        woonplaatsInvoerVeld = new TextArea();
+        telefoonnummerInvoerVeld = new TextField();
+        ratingVeld = new TextField();
+        emergencyContactenVeld = new CheckBox();
+        contactLijst = new ListView<>();
+        btOpslaan = new Button("Opslaan");
+        btNieuw = new Button("Nieuw");
+        btTerug = new Button("Terug naar het overzicht");
+        btVerwijderen = new Button("Verwijderen");
         initLayout();
     }
 
@@ -61,7 +66,7 @@ public class ContactView {
         straatInvoerVeld = new TextField();
         huisnummerInvoerVeld = new TextField();
         postcodeInvoerVeld = new TextField();
-        woonplaatsInvoerVeld = new TextField();
+        woonplaatsInvoerVeld = new TextArea();
         telefoonnummerInvoerVeld = new TextField();
         ratingVeld =  new TextField();
         emergencyContactenVeld = new CheckBox();
@@ -94,35 +99,23 @@ public class ContactView {
         view.add(emergencyContactenLabel, 0,9 );
         view.add(emergencyContactenVeld, 1, 9);
 
-        Button btOpslaan = new Button("Opslaan");
+        //VBOX
+        VBox vbButtons = new VBox(btOpslaan,contactLijstLabel,contactLijst);
+        vbButtons.setSpacing(100);
+        view.getChildren().add(vbButtons);
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
-
         view.add(btOpslaan,0,10,3,1);
-        view.setFillWidth(btOpslaan, true);
-
         view.add(contactLijstLabel, 0,11);
         view.add(contactLijst,0,12,3,1);
 
-        Button btNieuw = new Button("Nieuw");
+        //HBOX
+        HBox hbButtons = new HBox(btNieuw, btVerwijderen, btTerug);
+        hbButtons.setSpacing(100);
+        view.getChildren().add(hbButtons);
         view.add(btNieuw,0,13);
-        Button btVerwijderen = new Button("Verwijderen");
         view.add(btVerwijderen,1,13);
-        Button btTerug = new Button("Terug naar overzicht");
         view.add(btTerug,2,13);
 
-
-//        private HBox getHBox() {
-//            HBox hbButtons = new HBox();
-//            hbButtons.setSpacing(5);
-//            hbButtons.setPadding(new Insets(0, 20, 10, 30));
-//
-//            hbButtons.getChildren().add(new Button("Nieuw"));
-//            hbButtons.getChildren().add(new Button("Verwijderen"));
-//            hbButtons.getChildren().add(new Button("Terug naar overzicht"));
-//
-//            return hbButtons;
-//
-//        }
     }
 
     public Parent getRoot(){
