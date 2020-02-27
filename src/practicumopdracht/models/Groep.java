@@ -1,6 +1,8 @@
 package practicumopdracht.models;
 
+import java.time.LocalDate;
+
 public class Groep {
     private String groepNaam;
-    private int aantal;
+    private LocalDate datumToegevoegd;
 }

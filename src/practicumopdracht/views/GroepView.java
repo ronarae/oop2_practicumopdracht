@@ -1,6 +1,5 @@
 package practicumopdracht.views;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
