@@ -9,8 +9,8 @@ import practicumopdracht.controllers.GroepController;
 public class MainApplication extends Application {
 
     private final String TITLE = "Adresboek - Rona Rae de Romas Rieza";
-    private final int WIDTH = 850;
-    private final int HEIGHT = 1000;
+    private final int WIDTH = 660;
+    private final int HEIGHT = 750;
     public static Stage stage;
 
     @Override

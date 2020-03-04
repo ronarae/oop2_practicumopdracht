@@ -31,12 +31,12 @@ public class ContactView extends View {
     private GridPane view;
 
     public ContactView() {
-        String groepNamen[] = {
-                "Familie",
-                "Vrienden",
-                "School",
-                "Werk"
-        };
+//        String groepNamen[] = {
+//                "Familie",
+//                "Vrienden",
+//                "School",
+//                "Werk"
+//        };
 
         groepNaamInvoerVeld = new ComboBox();
         naamInvoerVeld = new TextField();
@@ -74,12 +74,14 @@ public class ContactView extends View {
         view = new GridPane();
         view.setHgap(10);
         view.setVgap(10);
-        view.setPadding(new Insets(10, 10, 10, 10));
-        //view.setAlignment(Pos.TOP_CENTER);
+        view.setPadding(new Insets(10));
 
         view.add(groepNaamLabel, 0,0);
         view.add(groepNaamInvoerVeld, 1, 0);
-        groepNaamInvoerVeld.getItems();
+        groepNaamInvoerVeld.getItems().add("Familie");
+        groepNaamInvoerVeld.getItems().add("Vrienden");
+        groepNaamInvoerVeld.getItems().add("School");
+        groepNaamInvoerVeld.getItems().add("Werk");
 
         view.add(naamLabel, 0, 1);
         view.add(naamInvoerVeld, 1,1);
@@ -102,6 +104,7 @@ public class ContactView extends View {
 
         view.add(woonplaatsLabel,0,7);
         view.add(woonplaatsInvoerVeld,1,7);
+        woonplaatsInvoerVeld.setPrefHeight(50);
 
         view.add(telefoonnummerLabel,0,8);
         view.add(telefoonnummerInvoerVeld,1,8);
@@ -117,18 +120,21 @@ public class ContactView extends View {
         vbButtons.setSpacing(10);
         view.getChildren().add(vbButtons);
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
-        view.add(btOpslaan,0,10,3,1);
-        view.add(contactLijstLabel, 0,11);
-        view.add(contactLijst,0,12,3,1);
+        view.add(btOpslaan,0,11,2,1);
+        view.add(contactLijstLabel, 0,12);
+        view.add(contactLijst,0,13,2,1);
+        contactLijst.setPrefHeight(100);
 
         //HBOX
         HBox hbButtons = new HBox(btNieuw, btVerwijderen, btTerug);
         hbButtons.setSpacing(10);
         view.getChildren().add(hbButtons);
-        view.add(btNieuw,0,13);
-        view.add(btVerwijderen,1,13);
-        view.add(btTerug,2,13);
-
+        view.add(btNieuw,0,14,2,1);
+        btNieuw.setMaxWidth(Double.MAX_VALUE);
+        view.add(btVerwijderen,0,15,2,1);
+        btVerwijderen.setMaxWidth(Double.MAX_VALUE);
+        view.add(btTerug,0,16,2,1);
+       btTerug.setMaxWidth(Double.MAX_VALUE);
     }
 
     public Parent getRoot(){
