@@ -3,28 +3,31 @@ package practicumopdracht;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import practicumopdracht.views.ContactView;
-import practicumopdracht.views.GroepView;
+import practicumopdracht.controllers.Controller;
+import practicumopdracht.controllers.GroepController;
 
 public class MainApplication extends Application {
 
+    private final String TITLE = "Adresboek - Rona Rae de Romas Rieza";
+    private final int WIDTH = 850;
+    private final int HEIGHT = 1000;
+    public static Stage stage;
+
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Adresboek - Rona Rae de Romas Rieza");
-        ContactView contactView = new ContactView();
-        GroepView groepView = new GroepView();
+        this.stage = stage;
 
-        Scene mainScene = new Scene(
-                contactView.getRoot(),
-                800,
-                600
-//                groepView.getRoot(),
-//                300,
-//                200
-        );
+        stage.setTitle(TITLE);
+        stage.setWidth(WIDTH);
+        stage.setHeight(HEIGHT);
 
-        stage.setScene(mainScene);
+        switchController(new GroepController());
+
         stage.show();
-
     }
+    public static void switchController (Controller controller) {
+        stage.setScene(new Scene(controller.getView().getRoot()));
+    }
+
+
 }

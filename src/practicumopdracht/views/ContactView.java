@@ -1,5 +1,6 @@
 package practicumopdracht.views;
 
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ import javafx.scene.layout.VBox;
 import practicumopdracht.models.Contact;
 
 public class ContactView extends View {
+    private ComboBox groepNaamInvoerVeld;
     private TextField naamInvoerVeld;
     private DatePicker geboortedatumVeld;
     private TextField emailInvoerVeld;
@@ -29,6 +31,14 @@ public class ContactView extends View {
     private GridPane view;
 
     public ContactView() {
+        String groepNamen[] = {
+                "Familie",
+                "Vrienden",
+                "School",
+                "Werk"
+        };
+
+        groepNaamInvoerVeld = new ComboBox();
         naamInvoerVeld = new TextField();
         geboortedatumVeld = new DatePicker();
         emailInvoerVeld = new TextField();
@@ -48,6 +58,7 @@ public class ContactView extends View {
     }
 
     public void initLayout() {
+        Label groepNaamLabel = new Label("Groepnaam");
         Label naamLabel = new Label("Naam:");
         Label geboortedatumLabel = new Label("Geboortedatum:");
         Label emailLabel = new Label("Email:");
@@ -60,48 +71,50 @@ public class ContactView extends View {
         Label emergencyContactenLabel = new Label("Als emergency contact?");
         Label contactLijstLabel = new Label("Contact Lijst:");
 
-        naamInvoerVeld = new TextField();
-        geboortedatumVeld = new DatePicker();
-        emailInvoerVeld = new TextField();
-        straatInvoerVeld = new TextField();
-        huisnummerInvoerVeld = new TextField();
-        postcodeInvoerVeld = new TextField();
-        woonplaatsInvoerVeld = new TextArea();
-        telefoonnummerInvoerVeld = new TextField();
-        ratingVeld =  new TextField();
-        emergencyContactenVeld = new CheckBox();
-        contactLijst = new ListView<>();
-
         view = new GridPane();
         view.setHgap(10);
         view.setVgap(10);
         view.setPadding(new Insets(10, 10, 10, 10));
-        view.setAlignment(Pos.TOP_RIGHT);
+        //view.setAlignment(Pos.TOP_CENTER);
 
-        view.add(naamLabel, 0, 0);
-        view.add(naamInvoerVeld, 1,0);
-        view.add(geboortedatumLabel, 0,1);
-        view.add(geboortedatumVeld, 1,1);
-        view.add(emailLabel,0,2);
-        view.add(emailInvoerVeld,1,2);
-        view.add(straatLabel,0,3);
-        view.add(straatInvoerVeld,1,3);
-        view.add(huisnmmerLabel,0,4);
-        view.add(huisnummerInvoerVeld,1,4);
-        view.add(postcodeLabel,0,5);
-        view.add(postcodeInvoerVeld,1,5);
-        view.add(woonplaatsLabel,0,6);
-        view.add(woonplaatsInvoerVeld,1,6);
-        view.add(telefoonnummerLabel,0,7);
-        view.add(telefoonnummerInvoerVeld,1,7);
-        view.add(ratingLabel, 0, 8);
-        view.add(ratingVeld,1,8);
-        view.add(emergencyContactenLabel, 0,9 );
-        view.add(emergencyContactenVeld, 1, 9);
+        view.add(groepNaamLabel, 0,0);
+        view.add(groepNaamInvoerVeld, 1, 0);
+        groepNaamInvoerVeld.getItems();
+
+        view.add(naamLabel, 0, 1);
+        view.add(naamInvoerVeld, 1,1);
+
+        view.add(geboortedatumLabel, 0,2);
+        view.add(geboortedatumVeld, 1,2);
+        geboortedatumVeld.setMaxWidth(Double.MAX_VALUE);
+
+        view.add(emailLabel,0,3);
+        view.add(emailInvoerVeld,1,3);
+
+        view.add(straatLabel,0,4);
+        view.add(straatInvoerVeld,1,4);
+
+        view.add(huisnmmerLabel,0,5);
+        view.add(huisnummerInvoerVeld,1,5);
+
+        view.add(postcodeLabel,0,6);
+        view.add(postcodeInvoerVeld,1,6);
+
+        view.add(woonplaatsLabel,0,7);
+        view.add(woonplaatsInvoerVeld,1,7);
+
+        view.add(telefoonnummerLabel,0,8);
+        view.add(telefoonnummerInvoerVeld,1,8);
+
+        view.add(ratingLabel, 0, 9);
+        view.add(ratingVeld,1,9);
+
+        view.add(emergencyContactenLabel, 0,10);
+        view.add(emergencyContactenVeld, 1, 10);
 
         //VBOX
         VBox vbButtons = new VBox(btOpslaan,contactLijstLabel,contactLijst);
-        vbButtons.setSpacing(100);
+        vbButtons.setSpacing(10);
         view.getChildren().add(vbButtons);
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
         view.add(btOpslaan,0,10,3,1);
@@ -110,7 +123,7 @@ public class ContactView extends View {
 
         //HBOX
         HBox hbButtons = new HBox(btNieuw, btVerwijderen, btTerug);
-        hbButtons.setSpacing(100);
+        hbButtons.setSpacing(10);
         view.getChildren().add(hbButtons);
         view.add(btNieuw,0,13);
         view.add(btVerwijderen,1,13);
