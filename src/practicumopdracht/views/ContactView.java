@@ -8,6 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import practicumopdracht.MainApplication;
+import practicumopdracht.controllers.ContactController;
+import practicumopdracht.controllers.GroepController;
 import practicumopdracht.models.Contact;
 
 public class ContactView extends View {
@@ -82,6 +85,7 @@ public class ContactView extends View {
         groepNaamInvoerVeld.getItems().add("Vrienden");
         groepNaamInvoerVeld.getItems().add("School");
         groepNaamInvoerVeld.getItems().add("Werk");
+        groepNaamInvoerVeld.setMaxWidth(Double.MAX_VALUE);
 
         view.add(naamLabel, 0, 1);
         view.add(naamInvoerVeld, 1,1);
@@ -133,8 +137,10 @@ public class ContactView extends View {
         btNieuw.setMaxWidth(Double.MAX_VALUE);
         view.add(btVerwijderen,0,15,2,1);
         btVerwijderen.setMaxWidth(Double.MAX_VALUE);
+
         view.add(btTerug,0,16,2,1);
-       btTerug.setMaxWidth(Double.MAX_VALUE);
+        btTerug.setMaxWidth(Double.MAX_VALUE);
+        btTerug.setOnAction(actionEvent -> MainApplication.switchController(new GroepController()));
     }
 
     public Parent getRoot(){

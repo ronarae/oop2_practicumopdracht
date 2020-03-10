@@ -8,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import practicumopdracht.MainApplication;
 import practicumopdracht.controllers.ContactController;
 
@@ -15,6 +16,9 @@ public class GroepView extends View{
     private TextField groepNaamInvoerVeld;
     private DatePicker datumToegevoegdInvoerVeld;
     private Button btOpslaan;
+    private Button btNieuw;
+    private Button btVerwijderen;
+    private Button btTerug;
 
     private GridPane view;
 
@@ -22,6 +26,9 @@ public class GroepView extends View{
         groepNaamInvoerVeld = new TextField();
         datumToegevoegdInvoerVeld = new DatePicker();
         btOpslaan = new Button("Opslaan");
+        btNieuw = new Button("Nieuw");
+        btTerug = new Button("Volgende");
+        btVerwijderen = new Button("Verwijderen");
         initLayout();
     }
 
@@ -36,7 +43,7 @@ public class GroepView extends View{
         view.setHgap(5);
         view.setVgap(5);
         view.setAlignment(Pos.BASELINE_CENTER);
-        view.setPadding(new Insets(100, 10, 10, 10));
+        view.setPadding(new Insets(200, 10, 10, 10));
 
         view.add(groepNaamLabel, 0, 0);
         view.add(groepNaamInvoerVeld, 1, 0);
@@ -47,9 +54,16 @@ public class GroepView extends View{
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
         btOpslaan.setOnAction(actionEvent -> MainApplication.switchController(new ContactController()));
 
-//        btNieuw = new Button("Nieuw");
-//        btTerug = new Button("Terug naar het overzicht");
-//        btVerwijderen = new Button("Verwijderen");
+        //HBOX
+        HBox hbButtons = new HBox(btNieuw, btVerwijderen, btTerug);
+        hbButtons.setSpacing(10);
+        view.getChildren().add(hbButtons);
+        view.add(btNieuw,0,14,2,1);
+        btNieuw.setMaxWidth(Double.MAX_VALUE);
+        view.add(btVerwijderen,0,15,2,1);
+        btVerwijderen.setMaxWidth(Double.MAX_VALUE);
+        view.add(btTerug,0,16,2,1);
+        btTerug.setMaxWidth(Double.MAX_VALUE);
 
     }
 
