@@ -61,10 +61,10 @@ public class ContactView extends View {
     }
 
     public void initLayout() {
-        Label groepNaamLabel = new Label("Groepnaam");
-        Label naamLabel = new Label("Naam:");
-        Label geboortedatumLabel = new Label("Geboortedatum:");
-        Label emailLabel = new Label("Email:");
+        Label groepNaamLabel = new Label("Groepnaam: *");
+        Label naamLabel = new Label("Naam: *");
+        Label geboortedatumLabel = new Label("Geboortedatum: *");
+        Label emailLabel = new Label("Email: *");
         Label straatLabel = new Label("Straat:");
         Label huisnmmerLabel = new Label("Huisnummer:");
         Label postcodeLabel = new Label("Postcode:");
@@ -73,6 +73,8 @@ public class ContactView extends View {
         Label ratingLabel = new Label("Rating");
         Label emergencyContactenLabel = new Label("Als emergency contact?");
         Label contactLijstLabel = new Label("Contact Lijst:");
+
+        Label textLabel = new Label("Alle * zijn verplicte velden! ");
 
         view = new GridPane();
         view.setHgap(10);
@@ -119,28 +121,63 @@ public class ContactView extends View {
         view.add(emergencyContactenLabel, 0,10);
         view.add(emergencyContactenVeld, 1, 10);
 
+        view.add(textLabel, 0 , 11);
         //VBOX
         VBox vbButtons = new VBox(btOpslaan,contactLijstLabel,contactLijst);
         vbButtons.setSpacing(10);
         view.getChildren().add(vbButtons);
         btOpslaan.setMaxWidth(Double.MAX_VALUE);
-        view.add(btOpslaan,0,11,2,1);
-        view.add(contactLijstLabel, 0,12);
-        view.add(contactLijst,0,13,2,1);
+        view.add(btOpslaan,0,12,2,1);
+        view.add(contactLijstLabel, 0,13);
+        view.add(contactLijst,0,14,2,1);
         contactLijst.setPrefHeight(100);
 
         //HBOX
         HBox hbButtons = new HBox(btNieuw, btVerwijderen, btTerug);
         hbButtons.setSpacing(10);
         view.getChildren().add(hbButtons);
-        view.add(btNieuw,0,14,2,1);
+        view.add(btNieuw,0,15,2,1);
         btNieuw.setMaxWidth(Double.MAX_VALUE);
-        view.add(btVerwijderen,0,15,2,1);
+        view.add(btVerwijderen,0,16,2,1);
         btVerwijderen.setMaxWidth(Double.MAX_VALUE);
 
-        view.add(btTerug,0,16,2,1);
+        view.add(btTerug,0,17,2,1);
         btTerug.setMaxWidth(Double.MAX_VALUE);
         btTerug.setOnAction(actionEvent -> MainApplication.switchController(new GroepController()));
+    }
+    //getters for the buttons
+    public Button getBtOpslaan() {
+        return btOpslaan;
+    }
+
+    public Button getBtNieuw() {
+        return btNieuw;
+    }
+
+    public Button getBtVerwijderen() {
+        return btVerwijderen;
+    }
+
+    public Button getBtTerug() {
+        return btTerug;
+    }
+
+    //getters for the verplicte velden
+
+    public ComboBox getGroepNaamInvoerVeld() {
+        return groepNaamInvoerVeld;
+    }
+
+    public TextField getNaamInvoerVeld() {
+        return naamInvoerVeld;
+    }
+
+    public DatePicker getGeboortedatumVeld() {
+        return geboortedatumVeld;
+    }
+
+    public TextField getEmailInvoerVeld() {
+        return emailInvoerVeld;
     }
 
     public Parent getRoot(){
