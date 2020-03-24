@@ -1,9 +1,12 @@
 package practicumopdracht.controllers;
 
 import javafx.scene.control.Alert;
+import practicumopdracht.models.Groep;
 import practicumopdracht.views.ContactView;
 import practicumopdracht.views.GroepView;
 import practicumopdracht.views.View;
+
+import java.util.Date;
 
 public class GroepController extends Controller {
 
@@ -27,23 +30,33 @@ public class GroepController extends Controller {
     }
 
     public void pressedOpslaan() {
-        if (groepView.getGroepNaamInvoerVeld().getText().isEmpty() &&
-                groepView.getDatumToegevoegdInvoerVeld().getValue() == null){
-            Alert missingValueAlert = new Alert(Alert.AlertType.ERROR);
-            missingValueAlert.setContentText("Je hebt niet alles ingevuld!");
-            missingValueAlert.show();
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Information Dialog");
+        error.setHeaderText("De volgende zijn de fouten");
+        if (groepView.getGroepNaamInvoerVeld().getText().isEmpty() ||
+                groepView.getGroepNaamInvoerVeld().getText().trim().isEmpty() &&
+                groepView.getDatumToegevoegdInvoerVeld().getValue() == null)
+        {
+            error.setContentText("Je hebt niet alles ingevuld! \n" +
+                    "- Naam van de groep is verplicht! \n" +
+                    "- Datum is verplicht of ongeldig" );
+
         } else if (groepView.getGroepNaamInvoerVeld().getText().isEmpty() ||
                 groepView.getDatumToegevoegdInvoerVeld().getValue() == null){
-            Alert missingValueAlert = new Alert(Alert.AlertType.ERROR);
-            missingValueAlert.setContentText("Je hebt niet alles ingevuld!");
-            missingValueAlert.show();
+           error.setContentText("Je hebt niet alles ingevuld!");
+
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Je hebt alles ingevuld");
-            alert.showAndWait();
+            Alert noError = new Alert(Alert.AlertType.INFORMATION);
+            noError.setHeaderText("Je hebt het opgeslagen !");
+
+            Groep newGroep = new Groep(groepView.getGroepNaamInvoerVeld().getText(),
+                    groepView.getDatumToegevoegdInvoerVeld().getValue());
+            noError.setContentText("Deze gegevens zijn succesvol opgeslagen: \n " + newGroep);
+
+            groepView.getGroepNaamInvoerVeld().clear();
+            groepView.getDatumToegevoegdInvoerVeld().setValue(null);
         }
+        error.show();
     }
 
 //    public void pressedTerug() { // volgendebutton

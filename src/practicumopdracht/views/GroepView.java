@@ -30,7 +30,6 @@ public class GroepView extends View{
         btTerug = new Button("Volgende");
         btVerwijderen = new Button("Verwijderen");
 
-
         initLayout();
     }
 
@@ -46,7 +45,7 @@ public class GroepView extends View{
         view.setHgap(5);
         view.setVgap(5);
         view.setAlignment(Pos.BASELINE_CENTER);
-        view.setPadding(new Insets(150, 10, 10, 10));
+        view.setPadding(new Insets(125, 10, 10, 10));
 
         view.add(groepNaamLabel, 0, 0);
         view.add(groepNaamInvoerVeld, 1, 0);
@@ -62,15 +61,11 @@ public class GroepView extends View{
         view.add(contactLijst,0,11,2,1);
         contactLijst.setPrefHeight(150);
 
-        //HBOX
-        HBox hbButtons = new HBox(btNieuw, btVerwijderen, btTerug);
-        hbButtons.setSpacing(10);
-        view.getChildren().add(hbButtons);
-        view.add(btNieuw,0,15,2,1);
+        view.add(btNieuw,0,16,2,1);
         btNieuw.setMaxWidth(Double.MAX_VALUE);
-        view.add(btVerwijderen,0,16,2,1);
+        view.add(btVerwijderen,0,17,2,1);
         btVerwijderen.setMaxWidth(Double.MAX_VALUE);
-        view.add(btTerug,0,17,2,1);
+        view.add(btTerug,0,18,2,1);
         btTerug.setMaxWidth(Double.MAX_VALUE);
     }
 
