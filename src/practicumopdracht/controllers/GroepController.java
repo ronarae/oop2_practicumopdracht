@@ -30,33 +30,32 @@ public class GroepController extends Controller {
     }
 
     public void pressedOpslaan() {
-        Alert error = new Alert(Alert.AlertType.ERROR);
-        error.setTitle("Information Dialog");
-        error.setHeaderText("De volgende zijn de fouten");
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText("De volgende zijn de fouten");
         if (groepView.getGroepNaamInvoerVeld().getText().isEmpty() ||
                 groepView.getGroepNaamInvoerVeld().getText().trim().isEmpty() &&
                 groepView.getDatumToegevoegdInvoerVeld().getValue() == null)
         {
-            error.setContentText("Je hebt niet alles ingevuld! \n" +
+            alert.setContentText("Je hebt niet alles ingevuld! \n" +
                     "- Naam van de groep is verplicht! \n" +
                     "- Datum is verplicht of ongeldig" );
 
         } else if (groepView.getGroepNaamInvoerVeld().getText().isEmpty() ||
                 groepView.getDatumToegevoegdInvoerVeld().getValue() == null){
-           error.setContentText("Je hebt niet alles ingevuld!");
+            alert.setContentText("Je hebt niet alles ingevuld!");
 
         } else {
-            Alert noError = new Alert(Alert.AlertType.INFORMATION);
-            noError.setHeaderText("Je hebt het opgeslagen !");
+            alert.setHeaderText("Je hebt het opgeslagen !");
 
             Groep newGroep = new Groep(groepView.getGroepNaamInvoerVeld().getText(),
                     groepView.getDatumToegevoegdInvoerVeld().getValue());
-            noError.setContentText("Deze gegevens zijn succesvol opgeslagen: \n " + newGroep);
+            alert.setContentText("Deze gegevens zijn succesvol opgeslagen: \n " + newGroep);
 
             groepView.getGroepNaamInvoerVeld().clear();
             groepView.getDatumToegevoegdInvoerVeld().setValue(null);
         }
-        error.show();
+        alert.show();
     }
 
 //    public void pressedTerug() { // volgendebutton
