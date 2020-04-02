@@ -34,13 +34,6 @@ public class ContactView extends View {
     private GridPane view;
 
     public ContactView() {
-//        String groepNamen[] = {
-//                "Familie",
-//                "Vrienden",
-//                "School",
-//                "Werk"
-//        };
-
         groepNaamInvoerVeld = new ComboBox();
         naamInvoerVeld = new TextField();
         geboortedatumVeld = new DatePicker();
@@ -49,7 +42,6 @@ public class ContactView extends View {
         huisnummerInvoerVeld = new TextField();
         postcodeInvoerVeld = new TextField();
         woonplaatsInvoerVeld = new TextArea();
-        telefoonnummerInvoerVeld = new TextField();
         ratingVeld = new TextField();
         emergencyContactenVeld = new CheckBox();
         contactLijst = new ListView<>();
@@ -69,7 +61,6 @@ public class ContactView extends View {
         Label huisnmmerLabel = new Label("Huisnummer:");
         Label postcodeLabel = new Label("Postcode:");
         Label woonplaatsLabel = new Label("Woonplaats:");
-        Label telefoonnummerLabel = new Label("Telefoonnummer:");
         Label ratingLabel = new Label("Rating");
         Label emergencyContactenLabel = new Label("Als emergency contact?");
         Label contactLijstLabel = new Label("Contact Lijst:");
@@ -111,9 +102,6 @@ public class ContactView extends View {
         view.add(woonplaatsLabel,0,7);
         view.add(woonplaatsInvoerVeld,1,7);
         woonplaatsInvoerVeld.setPrefHeight(50);
-
-        view.add(telefoonnummerLabel,0,8);
-        view.add(telefoonnummerInvoerVeld,1,8);
 
         view.add(ratingLabel, 0, 9);
         view.add(ratingVeld,1,9);

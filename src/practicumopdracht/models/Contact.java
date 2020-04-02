@@ -1,5 +1,7 @@
 package practicumopdracht.models;
 
+import javafx.collections.ObservableList;
+
 import java.time.LocalDate;
 
 public class Contact {
@@ -11,7 +13,6 @@ public class Contact {
    private int huisnummer;
    private String postcode;
    private String woonplaats;
-   private int telefoonnummer;
    private double rating; //hoe vak bel ik de persoon
    private boolean emergencyContacten;
    private Groep hoortbij; // groep hoort bij contact
@@ -19,8 +20,7 @@ public class Contact {
    private int masterId;
 
    public Contact(String naam, LocalDate geboortedatum, String email, String straat, int huisnummer,
-                  String postcode, String woonplaats, int telefoonnummer,
-                  double rating, boolean emergencyContacten, Groep hoortbij, int id, int masterId) {
+                  String postcode, String woonplaats, double rating, boolean emergencyContacten, Groep hoortbij, int id, int masterId) {
       this.naam = naam;
       this.geboortedatum = geboortedatum;
       this.email = email;
@@ -28,7 +28,6 @@ public class Contact {
       this.huisnummer = huisnummer;
       this.postcode = postcode;
       this.woonplaats = woonplaats;
-      this.telefoonnummer = telefoonnummer;
       this.rating = rating;
       this.emergencyContacten = emergencyContacten;
       this.hoortbij = hoortbij;
@@ -36,7 +35,24 @@ public class Contact {
       this.masterId = masterId;
    }
 
+   public Contact(String naam, LocalDate geboortedatum, String email, String straat, int huisnummer, String postcode, String woonplaats, double rating, int id, int masterId) {
+      this.naam = naam;
+      this.geboortedatum = geboortedatum;
+      this.email = email;
+      this.straat = straat;
+      this.huisnummer = huisnummer;
+      this.postcode = postcode;
+      this.woonplaats = woonplaats;
+      this.rating = rating;
+      this.id = id;
+      this.masterId = masterId;
+   }
 
+   public Contact(String naam, String email,LocalDate geboortedatum) {
+      this.naam = naam;
+      this.email = email;
+      this.geboortedatum = geboortedatum;
+   }
 
    public String getNaam() {
       return naam;
@@ -94,14 +110,6 @@ public class Contact {
       this.woonplaats = woonplaats;
    }
 
-   public int getTelefoonnummer() {
-      return telefoonnummer;
-   }
-
-   public void setTelefoonnummer(int telefoonnummer) {
-      this.telefoonnummer = telefoonnummer;
-   }
-
    public double getRating() {
       return rating;
    }
@@ -136,5 +144,11 @@ public class Contact {
 
    public int getMasterId() {
       return masterId;
+   }
+
+   @Override
+   public String toString() {
+      return String.format("%s: \u20ac%.2f%n%s%n%s%nid: %d\tmasterId: %d",
+              naam, id, masterId);
    }
 }

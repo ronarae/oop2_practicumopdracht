@@ -2,11 +2,9 @@ package practicumopdracht.controllers;
 
 import javafx.scene.control.Alert;
 import practicumopdracht.models.Groep;
-import practicumopdracht.views.ContactView;
 import practicumopdracht.views.GroepView;
 import practicumopdracht.views.View;
 
-import java.util.Date;
 
 public class GroepController extends Controller {
 

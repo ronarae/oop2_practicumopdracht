@@ -41,4 +41,10 @@ public class Groep {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Groep Naam: %s%n Wanneer is het gemaakt:",
+                groepNaam, datumToegevoegd, id);
+    }
 }
