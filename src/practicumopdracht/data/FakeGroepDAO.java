@@ -17,7 +17,6 @@ public class FakeGroepDAO extends GroepDAO {
             groep = new ArrayList<>();
             groep.add(new Groep("Family", LocalDate.now()));
             groep.add(new Groep("Friends", LocalDate.now()));
-            groep.add(new Groep("School", LocalDate.now()));
             return true;
         } catch (Exception e) {
             return false;

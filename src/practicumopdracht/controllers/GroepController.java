@@ -1,6 +1,9 @@
 package practicumopdracht.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import practicumopdracht.data.FakeGroepDAO;
 import practicumopdracht.models.Groep;
 import practicumopdracht.views.GroepView;
 import practicumopdracht.views.View;
@@ -10,12 +13,23 @@ public class GroepController extends Controller {
 
     private GroepView groepView;
 
+    private FakeGroepDAO groepDAO;
+
     public GroepController() {
         groepView = new GroepView();
         groepView.getBtNieuw().setOnAction(actionEvent -> pressedNieuw());
         groepView.getBtOpslaan().setOnAction(actionEvent -> pressedOpslaan());
 //        groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
         groepView.getBtVerwijderen().setOnAction(actionEvent -> pressedVerwijderen());
+
+        groepDAO = new FakeGroepDAO();
+        refreshData();
+        //pressedItem();
+    }
+
+    public void refreshData() {
+        ObservableList<Groep> groepList = FXCollections.observableList(groepDAO.getAll());
+        groepView.getGroepListView().setItems(groepList);
     }
 
     public void pressedNieuw() {
@@ -48,10 +62,17 @@ public class GroepController extends Controller {
 
             Groep newGroep = new Groep(groepView.getGroepNaamInvoerVeld().getText(),
                     groepView.getDatumToegevoegdInvoerVeld().getValue());
-            alert.setContentText("Deze gegevens zijn succesvol opgeslagen: \n " + newGroep);
 
             groepView.getGroepNaamInvoerVeld().clear();
             groepView.getDatumToegevoegdInvoerVeld().setValue(null);
+
+            groepDAO.addOrUpdate(newGroep);
+            refreshData();
+
+
+
+
+
         }
         alert.show();
     }

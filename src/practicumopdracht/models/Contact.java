@@ -19,6 +19,7 @@ public class Contact {
    private int id;
    private int masterId;
 
+
    public Contact(String naam, LocalDate geboortedatum, String email, String straat, int huisnummer,
                   String postcode, String woonplaats, double rating, boolean emergencyContacten, Groep hoortbij, int id, int masterId) {
       this.naam = naam;
@@ -146,9 +147,14 @@ public class Contact {
       return masterId;
    }
 
+   public String convertToString() {
+      return naam + email + geboortedatum + straat + huisnummer + postcode + woonplaats;
+   }
+
    @Override
    public String toString() {
-      return String.format("%s: \u20ac%.2f%n%s%n%s%nid: %d\tmasterId: %d",
-              naam, id, masterId);
+      return "Naam: " + naam + "\nEmail: " + email + "\nGeboortedatum: " + geboortedatum +
+              "\nStraat: " + straat + "\nHuisnummer: " + huisnummer + "\nPostcode: " + postcode
+              + "\nWoonplaats: " + woonplaats;
    }
 }

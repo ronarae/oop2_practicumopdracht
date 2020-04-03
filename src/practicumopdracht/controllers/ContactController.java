@@ -1,7 +1,10 @@
 package practicumopdracht.controllers;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import practicumopdracht.data.FakeContactDAO;
 import practicumopdracht.models.Contact;
 import practicumopdracht.models.Groep;
 import practicumopdracht.views.ContactView;
@@ -11,12 +14,22 @@ public class ContactController  extends Controller {
 
     private ContactView contactView;
 
+    private FakeContactDAO contactDAO;
+
     public ContactController() {
         contactView = new ContactView();
         contactView.getBtNieuw().setOnAction(actionEvent -> pressedNieuw());
         contactView.getBtOpslaan().setOnAction(actionEvent -> pressedOpslaan());
 //        groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
         contactView.getBtVerwijderen().setOnAction(actionEvent -> pressedVerwijderen());
+
+        contactDAO = new FakeContactDAO();
+        refreshData();
+    }
+
+    public void refreshData() {
+        ObservableList<Contact> contactLijst = FXCollections.observableList(contactDAO.getAll());
+        contactView.getContactLijst().setItems(contactLijst);
     }
 
     public void pressedNieuw() {
@@ -59,7 +72,11 @@ public class ContactController  extends Controller {
             contactView.getNaamInvoerVeld().clear();
             contactView.getEmailInvoerVeld().clear();
             contactView.getGeboortedatumVeld().setValue(null);
-    }
+
+            contactDAO.addOrUpdate(newContact);
+            refreshData();
+
+        }
     alert.show();
 
 }

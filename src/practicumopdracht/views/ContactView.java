@@ -22,7 +22,6 @@ public class ContactView extends View {
     private TextField huisnummerInvoerVeld;
     private TextField postcodeInvoerVeld;
     private TextArea woonplaatsInvoerVeld;
-    private TextField telefoonnummerInvoerVeld;
     private TextField ratingVeld;
     private CheckBox emergencyContactenVeld;
     private ListView<Contact> contactLijst;
@@ -166,6 +165,10 @@ public class ContactView extends View {
 
     public TextField getEmailInvoerVeld() {
         return emailInvoerVeld;
+    }
+
+    public ListView<Contact> getContactLijst() {
+        return contactLijst;
     }
 
     public Parent getRoot(){

@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import practicumopdracht.controllers.Controller;
 import practicumopdracht.controllers.GroepController;
+import practicumopdracht.data.ContactDAO;
+import practicumopdracht.data.GroepDAO;
 
 public class MainApplication extends Application {
 
@@ -12,6 +14,8 @@ public class MainApplication extends Application {
     private final int WIDTH = 660;
     private final int HEIGHT = 750;
     public static Stage stage;
+    public static GroepDAO groepDAO;
+    public static ContactDAO contactDAO;
 
     @Override
     public void start(Stage stage) {
@@ -30,4 +34,11 @@ public class MainApplication extends Application {
     }
 
 
+    public static GroepDAO getGroepDAO() {
+        return groepDAO;
+    }
+
+    public static ContactDAO getContactDAO() {
+        return contactDAO;
+    }
 }

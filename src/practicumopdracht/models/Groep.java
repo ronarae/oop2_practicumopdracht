@@ -42,9 +42,12 @@ public class Groep {
         this.id = id;
     }
 
+    public String convertString() {
+        return groepNaam + datumToegevoegd;
+    }
+
     @Override
     public String toString() {
-        return String.format("Groep Naam: %s%n Wanneer is het gemaakt:",
-                groepNaam, datumToegevoegd, id);
+        return "Groep Naam: " + groepNaam + "\nGemaakt: " + datumToegevoegd;
     }
 }
