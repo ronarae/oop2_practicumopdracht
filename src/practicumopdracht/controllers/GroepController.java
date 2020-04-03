@@ -6,10 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import practicumopdracht.MainApplication;
+import practicumopdracht.comparators.GroepNameComparator;
 import practicumopdracht.data.FakeGroepDAO;
+import practicumopdracht.enums.Soorteren;
 import practicumopdracht.models.Groep;
 import practicumopdracht.views.GroepView;
 import practicumopdracht.views.View;
+
+import java.util.Comparator;
 
 
 public class GroepController extends Controller {
@@ -29,6 +33,16 @@ public class GroepController extends Controller {
         groepView.getOpslaanMenu().setOnAction(actionEvent-> loadData());
         groepView.getSluitenMenu().setOnAction(e -> {
             afsluiten();
+        });
+
+
+
+        groepView.getSortNameAsc().setOnAction(e -> {
+            sorteer(new GroepNameComparator(Soorteren.ASCENDING));
+        });
+
+        groepView.getSortNameDesc().setOnAction(e -> {
+            sorteer(new GroepNameComparator(Soorteren.DESCENDING));
         });
 
         groepDAO = new FakeGroepDAO();
@@ -133,6 +147,9 @@ public class GroepController extends Controller {
         Platform.exit();
     }
 
+    private void sorteer(Comparator<Groep> comparator) {
+        FXCollections.sort(groepView.getGroepListView().getItems(), comparator);
+    }
     @Override
     public View getView() {
         return groepView;

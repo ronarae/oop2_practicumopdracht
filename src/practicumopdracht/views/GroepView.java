@@ -25,6 +25,10 @@ public class GroepView extends View{
     private MenuItem sluitenMenu;
     private Menu bestand;
 
+    private MenuItem sortNameAsc;
+    private MenuItem sortNameDesc;
+    private Menu soort;
+
     private GridPane view;
 
     public GroepView() {
@@ -84,7 +88,14 @@ public class GroepView extends View{
 
         bestand.getItems().addAll(opslaanMenu, ladenMenu, new SeparatorMenuItem(), sluitenMenu);
 
-        MenuBar menuBar = new MenuBar(bestand);
+        soort = new Menu("Sorteren");
+
+        sortNameAsc = new MenuItem("Naam, oplopend");
+        sortNameDesc = new MenuItem("Naam, aflopend");
+
+        soort.getItems().addAll(sortNameAsc, sortNameDesc, new SeparatorMenuItem());
+
+        MenuBar menuBar = new MenuBar(bestand, soort);
 
         border.setTop(menuBar);
         border.setCenter(view);
@@ -128,6 +139,18 @@ public class GroepView extends View{
 
     public MenuItem getSluitenMenu() {
         return sluitenMenu;
+    }
+
+    public MenuItem getSortNameAsc() {
+        return sortNameAsc;
+    }
+
+    public MenuItem getSortNameDesc() {
+        return sortNameDesc;
+    }
+
+    public Menu getSoort() {
+        return soort;
     }
 
     @Override
