@@ -5,10 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import practicumopdracht.MainApplication;
 import practicumopdracht.controllers.ContactController;
 import practicumopdracht.controllers.GroepController;
@@ -36,6 +33,10 @@ public class ContactView extends View {
     private MenuItem sortNameAsc;
     private MenuItem sortNameDesc;
     private Menu soort;
+
+    private RadioButton sorteerNaamOplopend;
+    private RadioButton sorteerNaamAflopend;
+    private ToggleGroup toggleGroup;
 
 
     private GridPane view;
@@ -73,6 +74,8 @@ public class ContactView extends View {
         Label contactLijstLabel = new Label("Contact Lijst:");
 
         Label textLabel = new Label("Alle * zijn verplicte velden! ");
+
+        Label sorterLabel = new Label("Sortering:");
 
         view = new GridPane();
         view.setHgap(10);
@@ -152,6 +155,23 @@ public class ContactView extends View {
 
 //        border.setTop(menuBar);
 //        border.setCenter(view);
+
+        HBox sorteerKnoppen = new HBox();
+        toggleGroup = new ToggleGroup();
+        sorteerNaamOplopend = new RadioButton("Naam, oplopend");
+        sorteerNaamOplopend.setToggleGroup(toggleGroup);
+        sorteerNaamOplopend.setMaxWidth(Double.MAX_VALUE);
+        sorteerNaamAflopend = new RadioButton("Naam, aflopend");
+        sorteerNaamAflopend.setToggleGroup(toggleGroup);
+        sorteerNaamAflopend.setMaxWidth(Double.MAX_VALUE);
+
+        sorterLabel.setMaxWidth(Double.MAX_VALUE);
+        sorteerKnoppen.setSpacing(10);
+        HBox.setHgrow(sorteerNaamOplopend, Priority.ALWAYS);
+        HBox.setHgrow(sorteerNaamAflopend, Priority.ALWAYS);
+
+        HBox.setHgrow(sorterLabel, Priority.ALWAYS);
+        sorteerKnoppen.getChildren().addAll(sorterLabel, sorteerNaamOplopend, sorteerNaamAflopend);
 
     }
     //getters for the buttons

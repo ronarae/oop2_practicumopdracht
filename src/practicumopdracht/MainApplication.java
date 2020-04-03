@@ -11,8 +11,8 @@ import practicumopdracht.data.GroepDAO;
 public class MainApplication extends Application {
 
     private final String TITLE = "Adresboek - Rona Rae de Romas Rieza";
-    private final int WIDTH = 660;
-    private final int HEIGHT = 750;
+    private final int WIDTH = 695;
+    private final int HEIGHT = 850;
     public static Stage stage;
     public static GroepDAO groepDAO;
     public static ContactDAO contactDAO;
