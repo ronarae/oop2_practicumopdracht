@@ -4,11 +4,16 @@ package practicumopdracht.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import practicumopdracht.comparators.ContactNameComparator;
+import practicumopdracht.comparators.GroepNameComparator;
 import practicumopdracht.data.FakeContactDAO;
+import practicumopdracht.enums.Soorteren;
 import practicumopdracht.models.Contact;
 import practicumopdracht.models.Groep;
 import practicumopdracht.views.ContactView;
 import practicumopdracht.views.View;
+
+import java.util.Comparator;
 
 public class ContactController  extends Controller {
 
@@ -23,6 +28,14 @@ public class ContactController  extends Controller {
 //        groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
         contactView.getBtVerwijderen().setOnAction(actionEvent -> pressedVerwijderen());
 
+
+        contactView.getSortNameAsc().setOnAction(e -> {
+            sorteer(new ContactNameComparator(Soorteren.ASCENDING));
+        });
+
+        contactView.getSortNameDesc().setOnAction(e -> {
+            sorteer(new ContactNameComparator(Soorteren.DESCENDING));
+        });
         contactDAO = new FakeContactDAO();
         refreshData();
     }
@@ -81,13 +94,13 @@ public class ContactController  extends Controller {
 
 }
 
-//    public void pressedTerug() { // volgendebutton
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information Dialog");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Je hebt op de terug button geklikt");
-//        alert.showAndWait();
-//    }
+    public void pressedTerug() { // volgendebutton
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Je hebt op de terug button geklikt");
+        alert.showAndWait();
+    }
 
     public void pressedVerwijderen() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -97,7 +110,9 @@ public class ContactController  extends Controller {
         alert.showAndWait();
     }
 
-
+    private void sorteer(Comparator<Contact> comparator) {
+        FXCollections.sort(contactView.getContactLijst().getItems(), comparator);
+    }
 
 
     @Override

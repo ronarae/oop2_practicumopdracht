@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,6 +30,13 @@ public class ContactView extends View {
     private Button btNieuw;
     private Button btVerwijderen;
     private Button btTerug;
+
+    private BorderPane border;
+
+    private MenuItem sortNameAsc;
+    private MenuItem sortNameDesc;
+    private Menu soort;
+
 
     private GridPane view;
 
@@ -131,6 +139,20 @@ public class ContactView extends View {
         view.add(btTerug,0,17,2,1);
         btTerug.setMaxWidth(Double.MAX_VALUE);
         btTerug.setOnAction(actionEvent -> MainApplication.switchController(new GroepController()));
+
+
+        soort = new Menu("Sorteren");
+
+        sortNameAsc = new MenuItem("Naam, oplopend");
+        sortNameDesc = new MenuItem("Naam, aflopend");
+
+        soort.getItems().addAll(sortNameAsc, sortNameDesc, new SeparatorMenuItem());
+
+        MenuBar menuBar = new MenuBar(soort);
+
+        border.setTop(menuBar);
+        border.setCenter(view);
+
     }
     //getters for the buttons
     public Button getBtOpslaan() {
@@ -171,7 +193,19 @@ public class ContactView extends View {
         return contactLijst;
     }
 
+    public MenuItem getSortNameAsc() {
+        return sortNameAsc;
+    }
+
+    public MenuItem getSortNameDesc() {
+        return sortNameDesc;
+    }
+
+    public Menu getSoort() {
+        return soort;
+    }
+
     public Parent getRoot(){
-        return view;
+        return border;
     }
 }

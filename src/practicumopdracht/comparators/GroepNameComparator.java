@@ -25,7 +25,7 @@ public class GroepNameComparator implements Comparator<Groep> {
         return 0;
     }
 
-    private int compareGroep(Groep boodschap1, Groep boodschap2) {
-        return boodschap1.getGroepNaam().compareTo(boodschap2.getGroepNaam());
+    private int compareGroep(Groep groep1, Groep groep2) {
+        return groep1.getGroepNaam().compareTo(groep2.getGroepNaam());
     }
 }
