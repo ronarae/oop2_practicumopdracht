@@ -144,18 +144,13 @@ public class ContactView extends View {
         btTerug.setOnAction(actionEvent -> MainApplication.switchController(new GroepController()));
 
 
-        soort = new Menu("Sorteren");
 
-        sortNameAsc = new MenuItem("Naam, oplopend");
-        sortNameDesc = new MenuItem("Naam, aflopend");
 
-        soort.getItems().addAll(sortNameAsc, sortNameDesc, new SeparatorMenuItem());
-
-        MenuBar menuBar = new MenuBar(soort);
-
+//        MenuBar menuBar = new MenuBar(soort);
+//
 //        border.setTop(menuBar);
 //        border.setCenter(view);
-
+//
         HBox sorteerKnoppen = new HBox();
         toggleGroup = new ToggleGroup();
         sorteerNaamOplopend = new RadioButton("Naam, oplopend");
@@ -173,6 +168,12 @@ public class ContactView extends View {
         HBox.setHgrow(sorterLabel, Priority.ALWAYS);
         sorteerKnoppen.getChildren().addAll(sorterLabel, sorteerNaamOplopend, sorteerNaamAflopend);
 
+        soort = new Menu("Sorteren");
+
+        sortNameAsc = new MenuItem("Naam, oplopend");
+        sortNameDesc = new MenuItem("Naam, aflopend");
+
+        soort.getItems().addAll(sortNameAsc, sortNameDesc, new SeparatorMenuItem());
     }
     //getters for the buttons
     public Button getBtOpslaan() {
