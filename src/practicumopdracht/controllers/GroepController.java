@@ -1,8 +1,11 @@
 package practicumopdracht.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import practicumopdracht.MainApplication;
 import practicumopdracht.data.FakeGroepDAO;
 import practicumopdracht.models.Groep;
 import practicumopdracht.views.GroepView;
@@ -19,12 +22,17 @@ public class GroepController extends Controller {
         groepView = new GroepView();
         groepView.getBtNieuw().setOnAction(actionEvent -> pressedNieuw());
         groepView.getBtOpslaan().setOnAction(actionEvent -> pressedOpslaan());
-//        groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
+         groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
         groepView.getBtVerwijderen().setOnAction(actionEvent -> pressedVerwijderen());
+
+        groepView.getOpslaanMenu().setOnAction(actionEvent-> pressedOpslaanMenu());
+        groepView.getOpslaanMenu().setOnAction(actionEvent-> loadData());
+        groepView.getSluitenMenu().setOnAction(e -> {
+            afsluiten();
+        });
 
         groepDAO = new FakeGroepDAO();
         refreshData();
-        //pressedItem();
     }
 
     public void refreshData() {
@@ -68,22 +76,17 @@ public class GroepController extends Controller {
 
             groepDAO.addOrUpdate(newGroep);
             refreshData();
-
-
-
-
-
         }
         alert.show();
     }
 
-//    public void pressedTerug() { // volgendebutton
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information Dialog");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Je hebt op de terug button geklikt");
-//        alert.showAndWait();
-//    }
+    public void pressedTerug() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Je hebt op de terug button geklikt");
+        alert.showAndWait();
+    }
 
     public void pressedVerwijderen() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -91,6 +94,43 @@ public class GroepController extends Controller {
         alert.setHeaderText(null);
         alert.setContentText("Je hebt op de volgende button geklikt");
         alert.showAndWait();
+    }
+
+    public void pressedOpslaanMenu() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Opslaan");
+        alert.setHeaderText("Weet u zeker dat u deze gegevens op wilt slaan?");
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK) {
+            saveData();
+        }
+    }
+
+    private void loadData() {
+        groepDAO.load();
+        MainApplication.getContactDAO().load();
+        refreshData();
+    }
+
+    private void saveData() {
+        groepDAO.save();
+        MainApplication.getContactDAO().save();
+        Alert saveAlert = new Alert(Alert.AlertType.INFORMATION);
+        saveAlert.setTitle("Succes");
+        saveAlert.setHeaderText("Het opslaan was succesvol!");
+        saveAlert.showAndWait();
+    }
+
+    public void afsluiten() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Weet u zeker ....");
+        alert.setHeaderText("Weet u zeker dat u dit programma wilt sluiten");
+        alert.setContentText("Klik op OK om alle gegevens op te slaan.");
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK) {
+            saveData();
+        }
+        Platform.exit();
     }
 
     @Override

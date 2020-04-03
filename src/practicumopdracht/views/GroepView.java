@@ -20,10 +20,10 @@ public class GroepView extends View{
     private Button btTerug;
 
     private BorderPane border;
-    private MenuItem opslaanMenuItem;
-    private MenuItem ladenMenuItem;
-    private MenuItem sluitenMenuItem;
-    private Menu bestandMenu;
+    private MenuItem opslaanMenu;
+    private MenuItem ladenMenu;
+    private MenuItem sluitenMenu;
+    private Menu bestand;
 
     private GridPane view;
 
@@ -76,15 +76,15 @@ public class GroepView extends View{
 
         border = new BorderPane();
 
-        bestandMenu = new Menu("Bestand");
+        bestand = new Menu("Bestand");
 
-        opslaanMenuItem = new MenuItem("Opslaan");
-        ladenMenuItem = new MenuItem("Laden");
-        sluitenMenuItem = new MenuItem("Sluiten");
+        opslaanMenu = new MenuItem("Opslaan");
+        ladenMenu = new MenuItem("Laden");
+        sluitenMenu = new MenuItem("Sluiten");
 
-        bestandMenu.getItems().addAll(opslaanMenuItem, ladenMenuItem, new SeparatorMenuItem(), sluitenMenuItem);
+        bestand.getItems().addAll(opslaanMenu, ladenMenu, new SeparatorMenuItem(), sluitenMenu);
 
-        MenuBar menuBar = new MenuBar(bestandMenu);
+        MenuBar menuBar = new MenuBar(bestand);
 
         border.setTop(menuBar);
         border.setCenter(view);
@@ -118,6 +118,17 @@ public class GroepView extends View{
         return groepListView;
     }
 
+    public MenuItem getOpslaanMenu() {
+        return opslaanMenu;
+    }
+
+    public MenuItem getLadenMenu() {
+        return ladenMenu;
+    }
+
+    public MenuItem getSluitenMenu() {
+        return sluitenMenu;
+    }
 
     @Override
     public Parent getRoot() {
