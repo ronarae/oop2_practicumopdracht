@@ -150,8 +150,8 @@ public class ContactView extends View {
 
         MenuBar menuBar = new MenuBar(soort);
 
-        border.setTop(menuBar);
-        border.setCenter(view);
+//        border.setTop(menuBar);
+//        border.setCenter(view);
 
     }
     //getters for the buttons
@@ -206,6 +206,6 @@ public class ContactView extends View {
     }
 
     public Parent getRoot(){
-        return border;
+        return view;
     }
 }

@@ -94,13 +94,13 @@ public class ContactController  extends Controller {
 
 }
 
-    public void pressedTerug() { // volgendebutton
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Je hebt op de terug button geklikt");
-        alert.showAndWait();
-    }
+//    public void pressedTerug() { // volgendebutton
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Information Dialog");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Je hebt op de terug button geklikt");
+//        alert.showAndWait();
+//    }
 
     public void pressedVerwijderen() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -26,7 +26,7 @@ public class GroepController extends Controller {
         groepView = new GroepView();
         groepView.getBtNieuw().setOnAction(actionEvent -> pressedNieuw());
         groepView.getBtOpslaan().setOnAction(actionEvent -> pressedOpslaan());
-         groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
+        // groepView.getBtTerug().setOnAction(actionEvent -> pressedTerug());
         groepView.getBtVerwijderen().setOnAction(actionEvent -> pressedVerwijderen());
 
         groepView.getOpslaanMenu().setOnAction(actionEvent-> pressedOpslaanMenu());
@@ -94,13 +94,13 @@ public class GroepController extends Controller {
         alert.show();
     }
 
-    public void pressedTerug() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Je hebt op de terug button geklikt");
-        alert.showAndWait();
-    }
+//    public void pressedTerug() {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Information Dialog");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Je hebt op de terug button geklikt");
+//        alert.showAndWait();
+//    }
 
     public void pressedVerwijderen() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
