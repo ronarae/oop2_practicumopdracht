@@ -14,9 +14,9 @@ public class FakeContactDAO extends ContactDAO {
 
     @Override
     public boolean load() {
-        contact = new ArrayList<>();
+        objects = new ArrayList<>();
         try {
-            contact.add(new Contact("Rona", LocalDate.of(1993,9,23),
+            objects.add(new Contact("Rona", LocalDate.of(1993,9,23),
                     "rona@email.com", "Het Laagt", 39, "1025GC",
                     "Amsterdam", 5, 2, 1));
             return true;

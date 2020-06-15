@@ -8,16 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ContactDAO implements DAO<Contact> {
-    List<Contact> contact;
+    protected List<Contact> objects;
+    private int id = 0;
 
     public List<Contact> getAllFor(Groep object) {
-        ArrayList<Contact> arrayList = new ArrayList<>();
-        for (Contact c : contact) {
+        ArrayList<Contact> contactArrayList = new ArrayList<>();
+        for (Contact c : objects) {
             if (object.getId() == c.getMasterId()) {
-                arrayList.add(c);
+                contactArrayList.add(c);
             }
         }
-        return arrayList;
+        return contactArrayList;
     }
 
     public ContactDAO() {
@@ -26,12 +27,12 @@ public abstract class ContactDAO implements DAO<Contact> {
 
     @Override
     public List<Contact> getAll() {
-        return new ArrayList<>(contact);
+        return new ArrayList<>(objects);
     }
 
     @Override
     public Contact get(int id) {
-        for (Contact c : contact) {
+        for (Contact c : objects) {
             if (c.getId() == id) {
                 return c;
             }
@@ -43,18 +44,18 @@ public abstract class ContactDAO implements DAO<Contact> {
     @Override
     public void addOrUpdate(Contact object) {
         if (object.getId() > 0) {
-            int index = contact.indexOf(get(object.getId()));
-            contact.remove(index);
-            contact.add(index, object);
+            int index = objects.indexOf(get(object.getId()));
+            objects.remove(index);
+            objects.add(index, object);
         } else {
             object.setId(getUniqueId());
-            contact.add(object);
+            objects.add(object);
         }
     }
 
     @Override
     public void remove(Contact object) {
-        contact.remove(get(object.getId()));
+        objects.remove(get(object.getId()));
     }
 
     @Override
@@ -65,7 +66,7 @@ public abstract class ContactDAO implements DAO<Contact> {
 
      private int getUniqueId() {
          int maxId = 0;
-         for (Contact c : contact) {
+         for (Contact c : objects) {
              if (c.getId() > maxId) {
                  maxId = c.getId();
              }
