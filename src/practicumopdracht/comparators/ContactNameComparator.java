@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 public class ContactNameComparator implements Comparator<Contact> {
 
-    Soorteren soort;
+    public Soorteren soort;
 
     public ContactNameComparator(Soorteren soort) {
         this.soort = soort;

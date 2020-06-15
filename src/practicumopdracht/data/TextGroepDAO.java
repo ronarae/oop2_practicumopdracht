@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextGroepDAO extends GroepDAO {
-    private static final String FILENAME = "resources/Groepbestand.txt";
+    private static final String FILENAME = "/Users/ronar/oop2_practicumopdracht/resources/Groepbestand.txt";
 
     @Override
     public boolean save() {

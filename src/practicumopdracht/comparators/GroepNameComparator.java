@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 public class GroepNameComparator implements Comparator<Groep> {
 
-    Soorteren soort;
+    public Soorteren soort;
 
     public GroepNameComparator(Soorteren soort) {
         this.soort = soort;

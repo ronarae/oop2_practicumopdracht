@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BinaryGroepDAO extends GroepDAO {
 
-    private static final String FILENAME = "resources/Groepbestand.dat";
+    private static final String FILENAME = "/Users/ronar/oop2_practicumopdracht/resources/Groepbestand.dat";
 
     @Override
     public boolean save() {
@@ -47,7 +47,7 @@ public class BinaryGroepDAO extends GroepDAO {
         } catch (FileNotFoundException ex) {
             System.err.println("Groep niet gevonden");
         } catch (EOFException ex) {
-            System.err.println("Alle data is gelezen ");
+            System.err.println("Alle data is gelezen-bin");
         } catch (IOException e) {
             System.err.println("IO Exception");
         } catch (Exception ex) {

@@ -1,14 +1,13 @@
 package practicumopdracht.data;
 
 import practicumopdracht.models.Contact;
-import practicumopdracht.models.Groep;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ObjectContactDAO extends ContactDAO {
-    private static final String FILENAME = "resources/ContactBestand.dat";
+    private static final String FILENAME = "/Users/ronar/oop2_practicumopdracht/resources/ContactBestand.dat";
 
     @Override
     public boolean save() {
@@ -20,7 +19,7 @@ public class ObjectContactDAO extends ContactDAO {
         } catch (NullPointerException ex) {
             System.err.println("Contact object is null");
         } catch (IOException ex) {
-            System.err.println(ex);
+            System.err.println("Contact"+ ex);
         } catch (Exception ex) {
             System.err.println("Contact exception: " + ex);
         }
@@ -31,19 +30,22 @@ public class ObjectContactDAO extends ContactDAO {
     public boolean load() {
         objects = new ArrayList<>();
 
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(FILENAME)))) {
-
+        try (ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(FILENAME)))) {
             while (true) {
-                objects = ((List<Contact>) objectInputStream.readObject());
+                objects = ((List<Contact>) input.readObject());
             }
-        } catch (FileNotFoundException ex) {
-            System.err.println("Contact not Found");
-        } catch (EOFException ex) {
-            System.err.println("Alle data is gelezen");
-        } catch (IOException ex) {
-            System.err.println(ex);
-        } catch (Exception ex) {
-            System.err.println("Contact exception: " + ex);
+        } catch (FileNotFoundException e) {
+            System.err.println("File not Found");
+        } catch (EOFException e ) {
+            System.err.println("End of File reached");
+        } catch (IOException e) {
+            System.err.println("IO Exception");
+        } catch (ClassCastException e) {
+            System.err.println("Class Cast Exception");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Class Not Found Exception");
+        } catch (Exception e) {
+            System.err.println("Exception");
         }
         return false;
     }
