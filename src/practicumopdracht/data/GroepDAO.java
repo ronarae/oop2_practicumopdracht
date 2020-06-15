@@ -2,11 +2,11 @@ package practicumopdracht.data;
 
 import practicumopdracht.models.Groep;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GroepDAO implements DAO<Groep> {
-    List<Groep> groep;
+    protected List<Groep> objects;
+    private int id = 0;
 
     //directe load methode instantiëren
     public GroepDAO() {
@@ -15,12 +15,12 @@ public abstract class GroepDAO implements DAO<Groep> {
 
     @Override
     public List<Groep> getAll() {
-        return new ArrayList<>(groep);
+        return objects;
     }
 
     @Override
     public Groep get(int id) {
-        for (Groep g : groep) {
+        for (Groep g : objects) {
             if (g.getId() == id) {
                 return g;
             }
@@ -31,18 +31,18 @@ public abstract class GroepDAO implements DAO<Groep> {
     @Override
     public void addOrUpdate(Groep object) {
         if (object.getId() > 0) {
-            int index = groep.indexOf(get(object.getId()));
-            groep.remove(index);
-            groep.add(index, object);
+            int index = objects.indexOf(get(object.getId()));
+            objects.remove(index);
+            objects.add(index, object);
         } else {
             object.setId(getUniqueId());
-            groep.add(object);
+            objects.add(object);
         }
     }
 
     @Override
     public void remove(Groep object) {
-        groep.remove(get(object.getId()));
+        objects.remove(get(object.getId()));
     }
 
     @Override
@@ -53,7 +53,7 @@ public abstract class GroepDAO implements DAO<Groep> {
 
     private int getUniqueId() {
         int maxId = 0;
-        for (Groep g : groep) {
+        for (Groep g : objects) {
             if (g.getId() > maxId) {
                 maxId = g.getId();
             }

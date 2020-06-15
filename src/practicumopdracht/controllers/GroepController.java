@@ -14,11 +14,13 @@ import practicumopdracht.views.GroepView;
 import practicumopdracht.views.View;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 
 public class GroepController extends Controller {
 
     private GroepView groepView;
+    private Alert alert;
 
     private FakeGroepDAO groepDAO;
 
@@ -102,12 +104,28 @@ public class GroepController extends Controller {
 //        alert.showAndWait();
 //    }
 
-    public void pressedVerwijderen() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Je hebt op de volgende button geklikt");
-        alert.showAndWait();
+
+    public void pressedVerwijderen(){
+        Groep selectedItem = groepView.getGroepListView().getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Verwijderen");
+            alert.setContentText("Je hebt geen item geselecteerd om te verwijderen!");
+            alert.show();
+        } else {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Verwijderen");
+            alert.setHeaderText("Je hebt op de verwijder-knop gedrukt!");
+            alert.setContentText("Weet je zeker dat je deze item wilt verwijderen?");
+            Optional<ButtonType> resultverwijderen = alert.showAndWait();
+
+            if (resultverwijderen.get() == ButtonType.OK) {
+                groepDAO.remove(selectedItem);
+                refreshData();
+                refreshFields();
+            }
+        }
     }
 
     public void pressedOpslaanMenu() {
@@ -128,21 +146,33 @@ public class GroepController extends Controller {
 
     private void saveData() {
         groepDAO.save();
-        MainApplication.getContactDAO().save();
+        MainApplication.getGroepDAO().save();
         Alert saveAlert = new Alert(Alert.AlertType.INFORMATION);
         saveAlert.setTitle("Succes");
         saveAlert.setHeaderText("Het opslaan was succesvol!");
         saveAlert.showAndWait();
     }
 
+    public void refreshFields() {
+        groepView.getGroepNaamInvoerVeld().clear();
+        groepView.getDatumToegevoegdInvoerVeld().setValue(null);
+    }
+
     public void afsluiten() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Weet u zeker ....");
-        alert.setHeaderText("Weet u zeker dat u dit programma wilt sluiten");
-        alert.setContentText("Klik op OK om alle gegevens op te slaan.");
-        alert.showAndWait();
-        if (alert.getResult() == ButtonType.OK) {
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Laden");
+        alert.setHeaderText("Je hebt op de sluit-knop gedrukt!");
+        alert.setContentText("Weet je zeker dat je de applicatie wilt sluiten?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Opslaan");
+            alert.setHeaderText("Sla je gegevens op anders gaan ze verloren!");
+            alert.setContentText("Wil je je gegevens opslaan?");
+
             saveData();
+            alert.show();
         }
         Platform.exit();
     }

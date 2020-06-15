@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextContactDAO extends ContactDAO {
-    private static final String FILENAME = "resources/ContactBestand.csv";
+    private static final String FILENAME = "resources/ContactBestand.dat";
 
     @Override
     public boolean save() {

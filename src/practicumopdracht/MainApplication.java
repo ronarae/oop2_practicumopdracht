@@ -5,8 +5,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import practicumopdracht.controllers.Controller;
 import practicumopdracht.controllers.GroepController;
+import practicumopdracht.data.BinaryGroepDAO;
 import practicumopdracht.data.ContactDAO;
 import practicumopdracht.data.GroepDAO;
+import practicumopdracht.data.ObjectContactDAO;
 
 public class MainApplication extends Application {
 
@@ -19,6 +21,8 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) {
+        groepDAO = new BinaryGroepDAO();
+        contactDAO = new ObjectContactDAO();
         this.stage = stage;
 
         stage.setTitle(TITLE);

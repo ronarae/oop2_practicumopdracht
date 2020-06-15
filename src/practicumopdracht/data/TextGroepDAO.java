@@ -15,9 +15,9 @@ public class TextGroepDAO extends GroepDAO {
 
     @Override
     public boolean save() {
-        File groepBestand = new File(FILENAME);
-        try (PrintStream stream = new PrintStream(groepBestand)) {
-            for (Groep g : groep) {
+        File groepbestand = new File(FILENAME);
+        try (PrintStream stream = new PrintStream(groepbestand)) {
+            for (Groep g : objects) {
                 stream.println(g.convertString());
             }
             return true;
@@ -31,18 +31,18 @@ public class TextGroepDAO extends GroepDAO {
 
     @Override
     public boolean load() {
-        groep = new ArrayList<>();
+        objects = new ArrayList<>();
         String[] groepData;
         ArrayList<String> cleanedGroepData;
-        File groepBestand = new File(FILENAME);
-        try (Scanner input = new Scanner(groepBestand)) {
+        File groepbestand = new File(FILENAME);
+        try (Scanner input = new Scanner(groepbestand)) {
             while(input.hasNextLine()) {
                 groepData = input.nextLine().split(",");
                 cleanedGroepData = new ArrayList<>();
                 for (String s : groepData) {
                     cleanedGroepData.add(s.trim());
                 }
-                groep.add(new Groep(cleanedGroepData.get(0), LocalDate.parse(cleanedGroepData.get(1))));
+                objects.add(new Groep(cleanedGroepData.get(0), LocalDate.parse(cleanedGroepData.get(1))));
             }
             return true;
         } catch (FileNotFoundException e) {

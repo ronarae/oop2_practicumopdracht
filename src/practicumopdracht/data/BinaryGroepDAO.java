@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class BinaryGroepDAO extends GroepDAO {
 
-    private static final String FILENAME = "resources/Groepbestand.txt";
+    private static final String FILENAME = "resources/Groepbestand.dat";
 
     @Override
     public boolean save() {
         try (DataOutputStream output = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(FILENAME)))) {
-            for (Groep g : groep) {
+            for (Groep g : objects) {
                 output.writeUTF(g.convertString());
             }
             return true;
@@ -29,7 +29,7 @@ public class BinaryGroepDAO extends GroepDAO {
 
     @Override
     public boolean load() {
-        groep = new ArrayList<>();
+        objects = new ArrayList<>();
         String[] data;
         try (DataInputStream input = new DataInputStream(new BufferedInputStream(new FileInputStream(FILENAME)))) {
             while (input.available() > 0) {
@@ -37,7 +37,7 @@ public class BinaryGroepDAO extends GroepDAO {
                 for (int i = 0; i < data.length; i++) {
                     data[i] = data[i].trim();
                 }
-                groep.add(new Groep(data[0], LocalDate.parse(data[1])));
+                objects.add(new Groep(data[0], LocalDate.parse(data[1])));
             }
             return true;
         } catch (FileNotFoundException e) {

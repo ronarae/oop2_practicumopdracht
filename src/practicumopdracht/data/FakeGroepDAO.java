@@ -7,19 +7,15 @@ import java.util.ArrayList;
 
 public class FakeGroepDAO extends GroepDAO {
     @Override
-    public boolean save() {
-        return false;
+    public boolean load() {
+        objects = new ArrayList<>();
+        objects.add(new Groep("Family", LocalDate.now()));
+        objects.add(new Groep("Friends", LocalDate.now()));
+        return true;
     }
 
     @Override
-    public boolean load() {
-        try {
-            groep = new ArrayList<>();
-            groep.add(new Groep("Family", LocalDate.now()));
-            groep.add(new Groep("Friends", LocalDate.now()));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean save() {
+        return false;
     }
 }

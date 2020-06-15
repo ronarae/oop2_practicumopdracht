@@ -4,6 +4,7 @@ package practicumopdracht.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import practicumopdracht.comparators.ContactNameComparator;
 import practicumopdracht.comparators.GroepNameComparator;
 import practicumopdracht.data.FakeContactDAO;
@@ -14,10 +15,12 @@ import practicumopdracht.views.ContactView;
 import practicumopdracht.views.View;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 public class ContactController  extends Controller {
 
     private ContactView contactView;
+    private Alert alert;
 
     private FakeContactDAO contactDAO;
 
@@ -94,20 +97,32 @@ public class ContactController  extends Controller {
 
 }
 
-//    public void pressedTerug() { // volgendebutton
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information Dialog");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Je hebt op de terug button geklikt");
-//        alert.showAndWait();
-//    }
+    public void  pressedVerwijderen() {
+        Contact selectedItem = contactView.getContactLijst().getSelectionModel().getSelectedItem();
 
-    public void pressedVerwijderen() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Je hebt op de volgende button geklikt");
-        alert.showAndWait();
+        if (selectedItem == null) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Je hebt geen item geselecteerd om te verwijderen!");
+            alert.show();
+        } else {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Verwijderen");
+            alert.setHeaderText("Je hebt op de verwijder-knop gedrukt!");
+            alert.setContentText("Weet je zeker dat je deze item wilt verwijderen?");
+            Optional<ButtonType> resultverwijderen = alert.showAndWait();
+
+            if (resultverwijderen.get() == ButtonType.OK) {
+                refreshData();
+                refreshFields();
+            }
+        }
+    }
+
+
+    public void refreshFields() {
+        contactView.getEmailInvoerVeld().clear();
+        contactView.getNaamInvoerVeld().clear();
+        contactView.getGeboortedatumVeld().setValue(null);
     }
 
     private void sorteer(Comparator<Contact> comparator) {

@@ -101,6 +101,8 @@ public class GroepView extends View{
         border.setCenter(view);
     }
 
+
+
     public Button getBtOpslaan() {
         return btOpslaan;
     }

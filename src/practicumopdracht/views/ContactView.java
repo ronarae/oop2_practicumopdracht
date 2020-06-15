@@ -1,18 +1,19 @@
 package practicumopdracht.views;
 
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import practicumopdracht.MainApplication;
-import practicumopdracht.controllers.ContactController;
 import practicumopdracht.controllers.GroepController;
 import practicumopdracht.models.Contact;
+import practicumopdracht.models.Groep;
 
+/**
+ * Master view
+ */
 public class ContactView extends View {
-    private ComboBox groepNaamInvoerVeld;
+    private ComboBox<Groep> groepNaamInvoerVeld;
     private TextField naamInvoerVeld;
     private DatePicker geboortedatumVeld;
     private TextField emailInvoerVeld;
@@ -42,7 +43,7 @@ public class ContactView extends View {
     private GridPane view;
 
     public ContactView() {
-        groepNaamInvoerVeld = new ComboBox();
+        groepNaamInvoerVeld = new ComboBox<>();
         naamInvoerVeld = new TextField();
         geboortedatumVeld = new DatePicker();
         emailInvoerVeld = new TextField();
@@ -84,10 +85,10 @@ public class ContactView extends View {
 
         view.add(groepNaamLabel, 0,0);
         view.add(groepNaamInvoerVeld, 1, 0);
-        groepNaamInvoerVeld.getItems().add("Familie");
-        groepNaamInvoerVeld.getItems().add("Vrienden");
-        groepNaamInvoerVeld.getItems().add("School");
-        groepNaamInvoerVeld.getItems().add("Werk");
+//        groepNaamInvoerVeld.getItems().add("Familie");
+//        groepNaamInvoerVeld.getItems().add("Vrienden");
+//        groepNaamInvoerVeld.getItems().add("School");
+//        groepNaamInvoerVeld.getItems().add("Werk");
         groepNaamInvoerVeld.setMaxWidth(Double.MAX_VALUE);
 
         view.add(naamLabel, 0, 1);
@@ -143,9 +144,6 @@ public class ContactView extends View {
         btTerug.setMaxWidth(Double.MAX_VALUE);
         btTerug.setOnAction(actionEvent -> MainApplication.switchController(new GroepController()));
 
-
-
-
 //        MenuBar menuBar = new MenuBar(soort);
 //
 //        border.setTop(menuBar);
@@ -194,7 +192,8 @@ public class ContactView extends View {
 
     //getters for the verplicte velden
 
-    public ComboBox getGroepNaamInvoerVeld() {
+
+    public ComboBox<Groep> getGroepNaamInvoerVeld() {
         return groepNaamInvoerVeld;
     }
 
